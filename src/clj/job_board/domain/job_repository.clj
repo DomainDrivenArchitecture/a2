@@ -1,19 +1,16 @@
 (ns job-board.domain.job-repository
   (:require
-   [job-board.config :refer [env]]
-    [job-board.domain.job :as job]))
+   [mount.core :as mount]
+   [job-board.domain.job :as job]))
 
-(def job-collection :job-collection)
-
-(defn job-collection [] 
-  (get job-collection env))
+(def job-collection (atom {}))
 
 (defn create! [job]
-    (swap! (job-collection)
+    (swap! job-collection
            assoc (keyword (:uuid job)) job))
 
 (defn delete! [id]
-    (swap! (job-collection)
+    (swap! job-collection
            (fn [collection]
              (let [k (keyword id)]
                (if (contains? collection k)
@@ -23,11 +20,15 @@
                                   :id id})))))))
 
 (defn find-all []
-  (vals @(job-collection)))
+  (into []
+        (vals @job-collection)))
 
 (defn init! []
-  (set-validator! (job-collection) job/validate)
+  ;;(set-validator! job-collection job/validate)
   (create! {:uuid "uuid"
             :company "my-company"
             :title "title"
-            :description "description"}))
+            :description "very long description"}))
+
+(mount/defstate ^{:on-reload :noop} job-repository
+  :start (init!))

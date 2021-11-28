@@ -42,5 +42,5 @@ made in terms of dependencies and code architecture.
 3. I am not sure, whether using `struct.core` for validation is good idea. 
 
 ### TODO
-* intialization is in progress
 * rest is listening to api/jobs/* istead of /jobs/
+* add some puml

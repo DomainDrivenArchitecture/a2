@@ -6,8 +6,7 @@
     [job-board.config :refer [env]]
     [clojure.tools.cli :refer [parse-opts]]
     [clojure.tools.logging :as log]
-    [mount.core :as mount]
-   [job-board.domain.job-repository :as job-repository])
+    [mount.core :as mount])
   (:gen-class))
 
 ;; log uncaught exceptions in threads
@@ -28,8 +27,7 @@
    (-> env
        (assoc  :handler (handler/app))
        (update :port #(or (-> env :options :port) %))
-       (assoc  job-repository/job-collection (atom {}))
-       (select-keys [:handler :host :port job-repository/job-collection])))
+       (select-keys [:handler :host :port])))
   :stop
   (http/stop http-server))
 

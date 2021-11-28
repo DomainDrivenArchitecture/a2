@@ -11,11 +11,13 @@
     (throw (ex-info "job is invalid"
                     {:error-id :validation
                      :errors errors}))
-    1))
+    (do (job-repository/create! job)
+        1)))
 
 (defn delete-job! [job-id]
   (if-let [errors (job/validate-id job-id)]
     (throw (ex-info "job-id is invalid"
                     {:error-id :validation
                      :errors errors}))
-    job-id))
+    (do (job-repository/delete! job-id)
+        job-id)))
