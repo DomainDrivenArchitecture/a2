@@ -40,3 +40,7 @@ made in terms of dependencies and code architecture.
        Swagger-ui is provided at: http://localhost:8080/swagger-ui
 3. Architecture follows the Luminus-Architectur on the web-server side & DomainDrivenDesign on the domain side.
 3. I am not sure, whether using `struct.core` for validation is good idea. 
+
+### TODO
+* intialization is in progress
+* rest is listening to api/jobs/* istead of /jobs/
