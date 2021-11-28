@@ -39,7 +39,6 @@ made in terms of dependencies and code architecture.
     7. metosin/reitit & data-spec - support for openapi-spec & data handling.   
        Swagger-ui is provided at: http://localhost:8080/swagger-ui
 3. Architecture follows the Luminus-Architectur on the web-server side & DomainDrivenDesign on the domain side.
-3. I am not sure, whether using `struct.core` for validation is good idea. 
 
 ### Architecture
 #### combine Luminus & DDD
@@ -97,4 +96,3 @@ service -> "job-management": list-all-jobs
 
 ### TODO
 * rest is listening to api/jobs/* istead of /jobs/
-* add some puml
