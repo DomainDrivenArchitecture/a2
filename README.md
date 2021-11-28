@@ -41,6 +41,60 @@ made in terms of dependencies and code architecture.
 3. Architecture follows the Luminus-Architectur on the web-server side & DomainDrivenDesign on the domain side.
 3. I am not sure, whether using `struct.core` for validation is good idea. 
 
+### Architecture
+#### combine Luminus & DDD
+```puml
+@startuml
+
+package application {
+  class "job-management"
+}
+note top: owns usecases
+
+package domain {
+  class job
+note top: owns job busines logic
+  class "job-repository"
+note bottom: domain interface to persistence, technical may go to infrastructure
+}
+
+
+package routes.services {
+  class services
+}
+note left: owns web related stuff (result codes, transformation, open-api)
+
+services -> application
+"job-management" -> domain
+
+@enduml
+```
+
+#### Server-init
+```puml
+@startuml
+
+actor alice
+alice -> mount: start
+mount -> http: start
+mount -> "job-repository": start
+"job-repository" -> "job-repository": start: init!
+		
+@enduml
+```
+
+#### Get: /jobs
+```puml
+@startuml
+
+actor alice
+alice -> service: get: /jobs
+service -> "job-management": list-all-jobs
+"job-management" -> "job-repository": find-all
+		
+@enduml
+```
+
 ### TODO
 * rest is listening to api/jobs/* istead of /jobs/
 * add some puml
