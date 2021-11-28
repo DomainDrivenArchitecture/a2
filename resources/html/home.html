@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content">
+  {{docs|markdown}}
+  <div class="columns is-centered">
+    <div class="column is-two-thirds">
+      <div class="columns">
+        <div class="column">
+          <ul class="messages">
+            {% for item in jobs %}
+            <li>
+              <p>{{item.company}} - {{item.uuid}}</p>
+              <p></p>
+              <p>{{item.title}}</p>
+              <p>{{item.description}}</p>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
