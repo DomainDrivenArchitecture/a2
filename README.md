@@ -111,5 +111,4 @@ service -> "job-management": list-all-jobs
 ```
 
 ### TODO
-* Fix the integration tests
 * rest is listening to api/jobs/* istead of /jobs/
