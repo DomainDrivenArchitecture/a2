@@ -42,9 +42,10 @@ made in terms of dependencies and code architecture.
 4. Architecture follows the Luminus-Architectur on the web-server side & DomainDrivenDesign on the domain side.
     1. Aspect Validation:
         1. atmo validation in routes.services (using data-spec) and validation in jobs namespace not on same code base. In production systems I would invest work to use the same validation code-base placed in domain. Validation should be part of domain. Data-spec seems to be compatible to spec, so same code-base seems possible.
-        1. To ensure valid domain objects I put the validation quality gates on application- and on repository-layer. Maybe it is good enough to do good validation on routes.service.
-    2. Aspect luminus project layout vs. DDD layout: DDD would put all webserver related stuff in an infrastructure namespace. As I not know how large this refactoring would be I accepted the luminus layout outside of application / domain / (infrastrucute for futer repository stuff).
-    3. Dependency Injection: I think DI is not as important on clojure as it is on OOLaguages. Therefor mount with it's support of lifecycle handlig may a sufficient solution.
+        1. To ensure valid domain objects I put the validation quality gates on application- and on repository-layer. Maybe it is good enough to do good validation one layer erleir on "routes.service".
+    2. Aspect luminus project layout vs. DDD layout: DDD would put all webserver related stuff in an infrastructure namespace. As I not know how large this refactoring is I accepted the luminus layout outside of application / domain / (infrastrucute for futher repository stuff).
+    3. Dependency Injection: I think DI is not as important on clojure as it is on OOLaguages. But for large systems DI may get important also. I found here a good discussion about: https://www.juxt.pro/blog/abstract-clojure   
+    If system goes to provide plugin style extensions, DI done by multimethod might be a good solution also. I tried this with success here: https://github.com/DomainDrivenArchitecture/dda-pallet/blob/4734582682a94ca119e9b1f918ba676cdd8699d4/main/src/dda/pallet/core/infra.clj#L53 and https://github.com/DomainDrivenArchitecture/dda-pallet/blob/4734582682a94ca119e9b1f918ba676cdd8699d4/main/src/dda/pallet/dda_config_crate/infra.clj#L25
 
 ### Architecture
 #### combine Luminus & DDD
