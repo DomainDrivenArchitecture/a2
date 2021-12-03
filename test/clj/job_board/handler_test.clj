@@ -28,21 +28,21 @@
 
 (deftest test-api
   (testing "add job"
-    (let [response ((app) (-> (request :post "/api/jobs")
+    (let [response ((app) (-> (request :post "/jobs")
                                 (json-body {:uuid "it-5"
                                             :company "inttest"
                                             :title "inttest"
                                             :description "very long description"})))]
         (is (= 200 (:status response)))))
   (testing "one job should be there"
-    (let [response ((app) (-> (request :get "/api/jobs")))]
+    (let [response ((app) (-> (request :get "/jobs")))]
       (is (= 200 (:status response)))
       (is (= 1 (count (m/decode-response-body response))))))
   (testing "one job should be there"
-    (let [response ((app) (-> (request :delete "/api/jobs/it-5")))]
+    (let [response ((app) (-> (request :delete "/jobs/it-5")))]
       (is (= 200 (:status response)))))
   (testing "one job should be there"
-    (let [response ((app) (-> (request :get "/api/jobs")))]
+    (let [response ((app) (-> (request :get "/jobs")))]
       (is (= 200 (:status response)))
       (is (= 0 (count (m/decode-response-body response))))))
 )

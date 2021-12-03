@@ -50,7 +50,7 @@
             {:server-error ["Failed to delete job!"]}}))))))
 
 (defn service-routes []
-   ["/api"
+   [""
    {:coercion spec-coercion/coercion
     :muuntaja formats/instance
     :swagger {:id ::api}

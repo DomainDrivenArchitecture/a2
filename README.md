@@ -109,6 +109,3 @@ service -> "job-management": list-all-jobs
 		
 @enduml
 ```
-
-### TODO
-* rest is listening to api/jobs/* istead of /jobs/
