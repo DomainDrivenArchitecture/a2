@@ -111,6 +111,5 @@ service -> "job-management": list-all-jobs
 ```
 
 ### TODO
-* Activate repositories validation
 * Fix the integration tests
 * rest is listening to api/jobs/* istead of /jobs/
